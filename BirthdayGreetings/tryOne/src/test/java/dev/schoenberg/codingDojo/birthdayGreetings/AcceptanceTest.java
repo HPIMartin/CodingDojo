@@ -1,9 +1,8 @@
 package dev.schoenberg.codingDojo.birthdayGreetings;
 
+import static dev.schoenberg.codingDojo.birthdayGreetings.TestHelper.*;
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Month;
@@ -27,14 +26,6 @@ public class AcceptanceTest {
 		Main.HOST = HOST;
 		Main.PORT = freePort;
 		Main.SOURCEFILE = Paths.get(RESOURCE_FILE);
-	}
-
-	private int getFreePort() {
-		try (ServerSocket socket = new ServerSocket(0);) {
-			return socket.getLocalPort();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	@After
