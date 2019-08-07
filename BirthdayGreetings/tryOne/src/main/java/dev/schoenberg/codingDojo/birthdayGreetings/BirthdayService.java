@@ -3,19 +3,16 @@ package dev.schoenberg.codingDojo.birthdayGreetings;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class BirthdayService {
-	public void sendGreetings(String fileName, XDate xDate, String smtpHost, int smtpPort)
-			throws IOException, ParseException, AddressException, MessagingException {
+	public void sendGreetings(String fileName, XDate xDate, String smtpHost, int smtpPort) {
 		try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
 			String str = "";
 			str = in.readLine(); // skip header
@@ -29,11 +26,13 @@ public class BirthdayService {
 					sendMessage(smtpHost, smtpPort, "sender@here.com", subject, body, recipient);
 				}
 			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	private void sendMessage(String smtpHost, int smtpPort, String sender, String subject, String body,
-			String recipient) throws AddressException, MessagingException {
+			String recipient) {
 		// Create a mail session
 		java.util.Properties props = new java.util.Properties();
 		props.put("mail.smtp.host", smtpHost);
@@ -42,12 +41,16 @@ public class BirthdayService {
 
 		// Construct the message
 		Message msg = new MimeMessage(session);
-		msg.setFrom(new InternetAddress(sender));
-		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-		msg.setSubject(subject);
-		msg.setText(body);
+		try {
+			msg.setFrom(new InternetAddress(sender));
+			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+			msg.setSubject(subject);
+			msg.setText(body);
 
-		// Send the message
-		Transport.send(msg);
+			// Send the message
+			Transport.send(msg);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

@@ -6,14 +6,14 @@ import org.junit.Test;
 
 public class XDateTest {
 	@Test
-	public void getters() throws Exception {
+	public void getters() {
 		XDate date = new XDate("1789/01/24");
 		assertEquals(1, date.getMonth());
 		assertEquals(24, date.getDay());
 	}
 
 	@Test
-	public void isSameDate() throws Exception {
+	public void isSameDate() {
 		XDate date = new XDate("1789/01/24");
 		XDate sameDay = new XDate("2001/01/24");
 		XDate notSameDay = new XDate("1789/01/25");
@@ -25,7 +25,7 @@ public class XDateTest {
 	}
 
 	@Test
-	public void equality() throws Exception {
+	public void equality() {
 		XDate base = new XDate("2000/01/02");
 		XDate same = new XDate("2000/01/02");
 		XDate different = new XDate("2000/01/04");
@@ -36,5 +36,4 @@ public class XDateTest {
 		assertTrue(base.equals(same));
 		assertFalse(base.equals(different));
 	}
-
 }

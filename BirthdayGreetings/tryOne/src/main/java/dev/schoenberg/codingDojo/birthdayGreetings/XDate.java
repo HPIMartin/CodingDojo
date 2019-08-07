@@ -12,8 +12,12 @@ public class XDate {
 		date = new Date();
 	}
 
-	public XDate(String yyyyMMdd) throws ParseException {
-		date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyyMMdd);
+	public XDate(String yyyyMMdd) {
+		try {
+			date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyyMMdd);
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public int getDay() {
