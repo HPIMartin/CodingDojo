@@ -1,39 +1,34 @@
 package dev.schoenberg.codingDojo.birthdayGreetings.fileRepository;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDate;
+import static java.time.LocalDate.*;
+import static java.util.stream.Collectors.*;
+
+import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import dev.schoenberg.codingDojo.birthdayGreetings.core.EmployeeRepository;
 import dev.schoenberg.codingDojo.birthdayGreetings.domain.Employee;
 
 public class EmployeeFileRepository implements EmployeeRepository {
-	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	private static final String SPLITT_PATTERN = ", ";
+	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-	private final String fileName;
+	private final Path fileName;
+	private final FileReader reader;
 
-	public EmployeeFileRepository(String fileName) {
+	public EmployeeFileRepository(Path fileName, FileReader reader) {
 		this.fileName = fileName;
+		this.reader = reader;
 	}
 
 	@Override
 	public List<Employee> getEmployees() {
-		List<Employee> employees = new ArrayList<>();
-		try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
-			String str = in.readLine(); // skip header
-			while ((str = in.readLine()) != null) {
-				String[] employeeData = str.split(", ");
-				Employee employee = new Employee(employeeData[1], employeeData[0],
-						LocalDate.parse(employeeData[2], FORMATTER), employeeData[3]);
-				employees.add(employee);
-			}
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		return employees;
+		return reader.readAllLines(fileName).stream().skip(1).map(this::parseEmployee).collect(toList());
+	}
+
+	private Employee parseEmployee(String str) {
+		String[] data = str.split(SPLITT_PATTERN);
+		return new Employee(data[1], data[0], parse(data[2], FORMATTER), data[3]);
 	}
 }

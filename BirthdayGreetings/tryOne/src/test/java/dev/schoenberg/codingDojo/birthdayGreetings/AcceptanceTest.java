@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -25,7 +26,7 @@ public class AcceptanceTest {
 		mailServer = SimpleSmtpServer.start(freePort);
 		Main.HOST = HOST;
 		Main.PORT = freePort;
-		Main.SOURCEFILE = RESOURCE_FILE;
+		Main.SOURCEFILE = Paths.get(RESOURCE_FILE);
 	}
 
 	private int getFreePort() {
