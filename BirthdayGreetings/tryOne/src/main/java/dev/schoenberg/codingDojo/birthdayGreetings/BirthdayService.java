@@ -1,32 +1,25 @@
 package dev.schoenberg.codingDojo.birthdayGreetings;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.List;
 
 public class BirthdayService {
 	private final EmailSender sender;
+	private EmployeeFileRepository repo;
 
-	public BirthdayService(EmailSender sender) {
+	public BirthdayService(EmailSender sender, EmployeeFileRepository repo) {
 		this.sender = sender;
+		this.repo = repo;
 	}
 
-	public void sendGreetings(String fileName, XDate xDate) {
-		try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
-			String str = in.readLine(); // skip header
-			while ((str = in.readLine()) != null) {
-				String[] employeeData = str.split(", ");
-				Employee employee = new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
-				if (employee.isBirthday(xDate)) {
-					String recipient = employee.email;
-					String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", employee.firstName);
-					String subject = "Happy Birthday!";
-					sender.sendMessage(subject, body, recipient);
-				}
+	public void sendGreetings(XDate today) {
+		List<Employee> employees = repo.getEmployees();
+		for (Employee employee : employees) {
+			if (employee.isBirthday(today)) {
+				String recipient = employee.email;
+				String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", employee.firstName);
+				String subject = "Happy Birthday!";
+				sender.sendMessage(subject, body, recipient);
 			}
-		} catch (IOException e) {
-			throw new RuntimeException(e);
 		}
 	}
-
 }
