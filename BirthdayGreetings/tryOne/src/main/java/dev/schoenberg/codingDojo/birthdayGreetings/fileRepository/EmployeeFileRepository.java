@@ -1,10 +1,12 @@
-package dev.schoenberg.codingDojo.birthdayGreetings;
+package dev.schoenberg.codingDojo.birthdayGreetings.fileRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import dev.schoenberg.codingDojo.birthdayGreetings.core.Employee;
 
 public class EmployeeFileRepository {
 	private final String fileName;

@@ -1,4 +1,4 @@
-package dev.schoenberg.codingDojo.birthdayGreetings;
+package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

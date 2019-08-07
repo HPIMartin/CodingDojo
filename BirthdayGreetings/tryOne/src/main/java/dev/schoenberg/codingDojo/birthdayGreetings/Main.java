@@ -1,5 +1,10 @@
 package dev.schoenberg.codingDojo.birthdayGreetings;
 
+import dev.schoenberg.codingDojo.birthdayGreetings.core.BirthdayService;
+import dev.schoenberg.codingDojo.birthdayGreetings.core.XDate;
+import dev.schoenberg.codingDojo.birthdayGreetings.email.EmailSender;
+import dev.schoenberg.codingDojo.birthdayGreetings.fileRepository.EmployeeFileRepository;
+
 public class Main {
 	public static int PORT = 25;
 	public static String HOST = "localhost";

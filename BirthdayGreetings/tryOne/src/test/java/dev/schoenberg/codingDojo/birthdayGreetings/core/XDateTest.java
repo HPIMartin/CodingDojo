@@ -1,8 +1,10 @@
-package dev.schoenberg.codingDojo.birthdayGreetings;
+package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import dev.schoenberg.codingDojo.birthdayGreetings.core.XDate;
 
 public class XDateTest {
 	@Test

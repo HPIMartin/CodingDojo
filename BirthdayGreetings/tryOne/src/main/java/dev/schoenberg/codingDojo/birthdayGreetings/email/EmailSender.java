@@ -1,4 +1,4 @@
-package dev.schoenberg.codingDojo.birthdayGreetings;
+package dev.schoenberg.codingDojo.birthdayGreetings.email;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

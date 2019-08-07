@@ -1,4 +1,4 @@
-package dev.schoenberg.codingDojo.birthdayGreetings;
+package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
 public class Employee {
 	public final XDate birthDate;
