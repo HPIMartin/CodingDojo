@@ -9,7 +9,7 @@ import dev.schoenberg.codingDojo.birthdayGreetings.core.Employee;
 public class BirthdayEmailGeneratorTest {
 	@Test
 	public void bithdayMessageForEmployee() {
-		Employee john = new Employee("John", "", "2000/01/01", "john@gmail.com");
+		Employee john = new Employee("John", "", null, "john@gmail.com");
 
 		Email mail = new BirthdayEmailGenerator().getMessage(john);
 

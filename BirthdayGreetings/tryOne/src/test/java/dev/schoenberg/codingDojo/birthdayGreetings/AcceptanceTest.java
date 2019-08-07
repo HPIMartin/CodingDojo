@@ -4,14 +4,14 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.time.LocalDate;
+import java.time.Month;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.dumbster.smtp.SimpleSmtpServer;
-
-import dev.schoenberg.codingDojo.birthdayGreetings.core.XDate;
 
 public class AcceptanceTest {
 	private static final String HOST = "localhost";
@@ -43,7 +43,7 @@ public class AcceptanceTest {
 
 	@Test
 	public void smokeTest() {
-		Main.TODAY = new XDate("2008/10/08");
+		Main.TODAY = LocalDate.of(2008, Month.OCTOBER, 8);
 
 		Main.main(new String[0]);
 

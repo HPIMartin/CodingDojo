@@ -2,6 +2,7 @@ package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,39 +13,43 @@ public class BirthdayServiceTest {
 	private FakeRepo repo;
 	private FakeSender sender;
 	private BirthdayService<FakeMessage> tested;
+	private FakeChecker checker;
 
 	@Before
 	public void setup() {
 		sender = new FakeSender();
 		repo = new FakeRepo();
-		tested = new BirthdayService<FakeMessage>(sender, repo, FakeMessage::new);
+		checker = new FakeChecker();
+		tested = new BirthdayService<FakeMessage>(sender, repo, FakeMessage::new, checker);
 	}
 
 	@Test
 	public void employeeHasNotBirthday() {
-		addEmployee("2000/01/01");
+		addEmployee();
+		checker.hasBirthDay = false;
 
-		sendMessage("2000/01/02");
+		sendMessage();
 
 		assertFalse(sender.hasMessage());
 	}
 
 	@Test
 	public void employeeHasBirthday() {
-		Employee e = addEmployee("2000/01/01");
+		Employee e = addEmployee();
+		checker.hasBirthDay = true;
 
-		sendMessage("2020/01/01");
+		sendMessage();
 
 		assertTrue(sender.hasMessage());
 		assertEquals(e, sender.message.employee);
 	}
 
-	private void sendMessage(String yyyyMMdd) {
-		tested.sendGreetings(new XDate(yyyyMMdd));
+	private void sendMessage() {
+		tested.sendGreetings(null);
 	}
 
-	private Employee addEmployee(String birthDate) {
-		Employee e = new Employee("", "", birthDate, "");
+	private Employee addEmployee() {
+		Employee e = new Employee("", "", null, "");
 		repo.employees.add(e);
 		return e;
 	}
@@ -55,6 +60,15 @@ public class BirthdayServiceTest {
 		@Override
 		public List<Employee> getEmployees() {
 			return employees;
+		}
+	}
+
+	private class FakeChecker extends BirthdayChecker {
+		public boolean hasBirthDay = false;
+
+		@Override
+		public boolean isBirthday(LocalDate birthday, LocalDate today) {
+			return hasBirthDay;
 		}
 	}
 
