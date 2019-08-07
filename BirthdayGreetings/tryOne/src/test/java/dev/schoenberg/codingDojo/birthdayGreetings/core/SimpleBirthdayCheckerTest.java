@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import dev.schoenberg.codingDojo.birthdayGreetings.domain.Birthday;
 
-public class BirthdayCheckerTest {
+public class SimpleBirthdayCheckerTest {
 	private BirthdayChecker tested;
 	private Birthday birthday;
 	private LocalDate today;
@@ -20,7 +20,7 @@ public class BirthdayCheckerTest {
 
 	@Before
 	public void setup() {
-		tested = new BirthdayChecker();
+		tested = new SimpleBirthdayChecker();
 	}
 
 	@Test

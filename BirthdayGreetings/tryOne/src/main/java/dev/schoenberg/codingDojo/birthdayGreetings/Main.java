@@ -5,7 +5,7 @@ import static java.time.LocalDate.*;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
-import dev.schoenberg.codingDojo.birthdayGreetings.core.BirthdayChecker;
+import dev.schoenberg.codingDojo.birthdayGreetings.core.SimpleBirthdayChecker;
 import dev.schoenberg.codingDojo.birthdayGreetings.core.BirthdayService;
 import dev.schoenberg.codingDojo.birthdayGreetings.email.BirthdayEmailGenerator;
 import dev.schoenberg.codingDojo.birthdayGreetings.email.Email;
@@ -23,7 +23,7 @@ public class Main {
 		EmployeeFileRepository repo = new EmployeeFileRepository(SOURCEFILE, new SimpleFileReader());
 		EmailSender sender = new EmailSender(HOST, PORT, "sender@here.com");
 		BirthdayEmailGenerator mailGen = new BirthdayEmailGenerator();
-		BirthdayService<Email> service = new BirthdayService<>(sender, repo, mailGen, new BirthdayChecker());
+		BirthdayService<Email> service = new BirthdayService<>(sender, repo, mailGen, new SimpleBirthdayChecker());
 
 		service.sendGreetings(TODAY);
 	}
