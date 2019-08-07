@@ -1,6 +1,6 @@
 package dev.schoenberg.codingDojo.birthdayGreetings;
 
-import java.text.*;
+import java.text.ParseException;
 
 public class Employee {
 	private XDate birthDate;

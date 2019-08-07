@@ -2,7 +2,7 @@ package dev.schoenberg.codingDojo.birthdayGreetings;
 
 import static org.junit.Assert.*;
 
-import org.junit.*;
+import org.junit.Test;
 
 public class XDateTest {
 	@Test

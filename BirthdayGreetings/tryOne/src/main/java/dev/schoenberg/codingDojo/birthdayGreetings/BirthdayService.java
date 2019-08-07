@@ -5,8 +5,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 
-import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class BirthdayService {
 	public void sendGreetings(String fileName, XDate xDate, String smtpHost, int smtpPort)

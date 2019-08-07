@@ -1,7 +1,9 @@
 package dev.schoenberg.codingDojo.birthdayGreetings;
 
-import java.text.*;
-import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class XDate {
 	private Date date;

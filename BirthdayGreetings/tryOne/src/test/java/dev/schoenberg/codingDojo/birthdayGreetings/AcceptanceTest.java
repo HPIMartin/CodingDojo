@@ -2,9 +2,12 @@ package dev.schoenberg.codingDojo.birthdayGreetings;
 
 import static org.junit.Assert.*;
 
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import com.dumbster.smtp.*;
+import com.dumbster.smtp.SimpleSmtpServer;
+import com.dumbster.smtp.SmtpMessage;
 
 public class AcceptanceTest {
 
@@ -26,7 +29,8 @@ public class AcceptanceTest {
 
 	@Test
 	public void willSendGreetings_whenItsSomebodysBirthday() throws Exception {
-		birthdayService.sendGreetings("src/main/resources/employee_data.txt", new XDate("2008/10/08"), "localhost", NONSTANDARD_PORT);
+		birthdayService.sendGreetings("src/main/resources/employee_data.txt", new XDate("2008/10/08"), "localhost",
+				NONSTANDARD_PORT);
 
 		assertEquals("message not sent?", 1, mailServer.getReceivedEmailSize());
 		SmtpMessage message = (SmtpMessage) mailServer.getReceivedEmail().next();
@@ -39,7 +43,8 @@ public class AcceptanceTest {
 
 	@Test
 	public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
-		birthdayService.sendGreetings("src/main/resources/employee_data.txt", new XDate("2008/01/01"), "localhost", NONSTANDARD_PORT);
+		birthdayService.sendGreetings("src/main/resources/employee_data.txt", new XDate("2008/01/01"), "localhost",
+				NONSTANDARD_PORT);
 
 		assertEquals("what? messages?", 0, mailServer.getReceivedEmailSize());
 	}
