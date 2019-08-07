@@ -15,7 +15,7 @@ import dev.schoenberg.codingDojo.birthdayGreetings.core.XDate;
 
 public class AcceptanceTest {
 	private static final String HOST = "localhost";
-	private static final String RESOURCE_FILE = "src/main/resources/employee_data.txt";
+	private static final String RESOURCE_FILE = "src/test/resources/employee_data.txt";
 
 	private SimpleSmtpServer mailServer;
 
