@@ -23,7 +23,7 @@ public class Main {
 		EmployeeFileRepository repo = new EmployeeFileRepository(SOURCEFILE, new SimpleFileReader());
 		EmailSender sender = new EmailSender(HOST, PORT, "sender@here.com");
 		BirthdayEmailGenerator mailGen = new BirthdayEmailGenerator();
-		BirthdayService<Email> service = new BirthdayService<Email>(sender, repo, mailGen, new BirthdayChecker());
+		BirthdayService<Email> service = new BirthdayService<>(sender, repo, mailGen, new BirthdayChecker());
 
 		service.sendGreetings(TODAY);
 	}
