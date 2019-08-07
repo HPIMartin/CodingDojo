@@ -2,23 +2,23 @@ package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
 import java.util.List;
 
-public class BirthdayService {
-	private final Sender sender;
+public class BirthdayService<E extends Message> {
+	private final Sender<E> sender;
 	private EmployeeRepository repo;
+	private MessageFactory<E> messageFactory;
 
-	public BirthdayService(Sender sender, EmployeeRepository repo) {
+	public BirthdayService(Sender<E> sender, EmployeeRepository repo, MessageFactory<E> messageFactory) {
 		this.sender = sender;
 		this.repo = repo;
+		this.messageFactory = messageFactory;
 	}
 
 	public void sendGreetings(XDate today) {
 		List<Employee> employees = repo.getEmployees();
 		for (Employee employee : employees) {
 			if (employee.isBirthday(today)) {
-				String recipient = employee.email;
-				String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", employee.firstName);
-				String subject = "Happy Birthday!";
-				sender.sendMessage(subject, body, recipient);
+				E m = messageFactory.getMessage(employee);
+				sender.sendMessage(m);
 			}
 		}
 	}

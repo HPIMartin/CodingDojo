@@ -1,9 +1,9 @@
 package dev.schoenberg.codingDojo.birthdayGreetings;
 
 import dev.schoenberg.codingDojo.birthdayGreetings.core.BirthdayService;
-import dev.schoenberg.codingDojo.birthdayGreetings.core.EmployeeRepository;
-import dev.schoenberg.codingDojo.birthdayGreetings.core.Sender;
 import dev.schoenberg.codingDojo.birthdayGreetings.core.XDate;
+import dev.schoenberg.codingDojo.birthdayGreetings.email.BirthdayEmailGenerator;
+import dev.schoenberg.codingDojo.birthdayGreetings.email.Email;
 import dev.schoenberg.codingDojo.birthdayGreetings.email.EmailSender;
 import dev.schoenberg.codingDojo.birthdayGreetings.fileRepository.EmployeeFileRepository;
 
@@ -14,9 +14,10 @@ public class Main {
 	public static XDate TODAY = new XDate();
 
 	public static void main(String[] args) {
-		EmployeeRepository repo = new EmployeeFileRepository(SOURCEFILE);
-		Sender sender = new EmailSender(HOST, PORT, "sender@here.com");
-		BirthdayService service = new BirthdayService(sender, repo);
+		EmployeeFileRepository repo = new EmployeeFileRepository(SOURCEFILE);
+		EmailSender sender = new EmailSender(HOST, PORT, "sender@here.com");
+		BirthdayEmailGenerator mailGen = new BirthdayEmailGenerator();
+		BirthdayService<Email> service = new BirthdayService<Email>(sender, repo, mailGen);
 		service.sendGreetings(TODAY);
 	}
 }

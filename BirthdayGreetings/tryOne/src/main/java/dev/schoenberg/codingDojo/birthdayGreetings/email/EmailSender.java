@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 
 import dev.schoenberg.codingDojo.birthdayGreetings.core.Sender;
 
-public class EmailSender implements Sender {
+public class EmailSender implements Sender<Email> {
 	private final String smtpHost;
 	private final int smtpPort;
 	private final String sender;
@@ -21,7 +21,7 @@ public class EmailSender implements Sender {
 	}
 
 	@Override
-	public void sendMessage(String subject, String body, String recipient) {
+	public void sendMessage(Email email) {
 		// Create a mail session
 		java.util.Properties props = new java.util.Properties();
 		props.put("mail.smtp.host", smtpHost);
@@ -32,9 +32,9 @@ public class EmailSender implements Sender {
 		Message msg = new MimeMessage(session);
 		try {
 			msg.setFrom(new InternetAddress(sender));
-			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-			msg.setSubject(subject);
-			msg.setText(body);
+			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(email.recipient));
+			msg.setSubject(email.subject);
+			msg.setText(email.body);
 
 			// Send the message
 			Transport.send(msg);
