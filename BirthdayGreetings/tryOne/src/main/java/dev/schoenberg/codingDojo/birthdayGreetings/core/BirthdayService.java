@@ -1,7 +1,5 @@
 package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
-import java.util.List;
-
 public class BirthdayService<E extends Message> {
 	private final Sender<E> sender;
 	private EmployeeRepository repo;
@@ -14,12 +12,7 @@ public class BirthdayService<E extends Message> {
 	}
 
 	public void sendGreetings(XDate today) {
-		List<Employee> employees = repo.getEmployees();
-		for (Employee employee : employees) {
-			if (employee.isBirthday(today)) {
-				E m = messageFactory.getMessage(employee);
-				sender.sendMessage(m);
-			}
-		}
+		repo.getEmployees().stream().filter(e -> e.isBirthday(today)).map(messageFactory::getMessage)
+				.forEach(sender::sendMessage);
 	}
 }
