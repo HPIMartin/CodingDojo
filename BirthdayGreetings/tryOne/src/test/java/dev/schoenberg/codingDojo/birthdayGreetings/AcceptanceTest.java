@@ -2,6 +2,9 @@ package dev.schoenberg.codingDojo.birthdayGreetings;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,28 +15,36 @@ import com.dumbster.smtp.SmtpMessage;
 public class AcceptanceTest {
 	private static final String HOST = "localhost";
 	private static final String RESOURCE_FILE = "src/main/resources/employee_data.txt";
-	private static final int NONSTANDARD_PORT = 9999;
 
-	private BirthdayService birthdayService;
 	private SimpleSmtpServer mailServer;
 
 	@Before
 	public void setUp() {
-		mailServer = SimpleSmtpServer.start(NONSTANDARD_PORT);
-		EmployeeFileRepository repo = new EmployeeFileRepository(RESOURCE_FILE);
-		EmailSender sender = new EmailSender(HOST, NONSTANDARD_PORT, "a@b.c");
-		birthdayService = new BirthdayService(sender, repo);
+		int freePort = getFreePort();
+		mailServer = SimpleSmtpServer.start(freePort);
+		Main.HOST = HOST;
+		Main.PORT = freePort;
+		Main.SOURCEFILE = RESOURCE_FILE;
+	}
+
+	private int getFreePort() {
+		try (ServerSocket socket = new ServerSocket(0);) {
+			return socket.getLocalPort();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		mailServer.stop();
-		Thread.sleep(200);
 	}
 
 	@Test
 	public void willSendGreetings_whenItsSomebodysBirthday() {
-		birthdayService.sendGreetings(new XDate("2008/10/08"));
+		Main.TODAY = new XDate("2008/10/08");
+
+		Main.main(new String[0]);
 
 		assertEquals(1, mailServer.getReceivedEmailSize());
 
@@ -47,7 +58,9 @@ public class AcceptanceTest {
 
 	@Test
 	public void willNotSendEmailsWhenNobodysBirthday() {
-		birthdayService.sendGreetings(new XDate("2008/01/01"));
+		Main.TODAY = new XDate("2008/01/01");
+
+		Main.main(new String[0]);
 
 		assertEquals(0, mailServer.getReceivedEmailSize());
 	}
