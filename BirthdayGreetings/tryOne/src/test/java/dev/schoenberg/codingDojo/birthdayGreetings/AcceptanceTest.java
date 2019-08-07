@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dumbster.smtp.SimpleSmtpServer;
-import com.dumbster.smtp.SmtpMessage;
 
 import dev.schoenberg.codingDojo.birthdayGreetings.core.XDate;
 
@@ -49,13 +48,6 @@ public class AcceptanceTest {
 		Main.main(new String[0]);
 
 		assertEquals(1, mailServer.getReceivedEmailSize());
-
-		SmtpMessage message = (SmtpMessage) mailServer.getReceivedEmail().next();
-		String[] recipients = message.getHeaderValues("To");
-		assertEquals(1, recipients.length);
-		assertEquals("john.doe@foobar.com", recipients[0].toString());
-		assertEquals("Happy Birthday, dear John!", message.getBody());
-		assertEquals("Happy Birthday!", message.getHeaderValue("Subject"));
 	}
 
 	@Test

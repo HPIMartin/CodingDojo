@@ -4,7 +4,6 @@ import dev.schoenberg.codingDojo.birthdayGreetings.core.Employee;
 import dev.schoenberg.codingDojo.birthdayGreetings.core.MessageFactory;
 
 public class BirthdayEmailGenerator implements MessageFactory<Email> {
-
 	@Override
 	public Email getMessage(Employee employee) {
 		String recipient = employee.email;
@@ -12,5 +11,4 @@ public class BirthdayEmailGenerator implements MessageFactory<Email> {
 		String subject = "Happy Birthday!";
 		return new Email(subject, body, recipient);
 	}
-
 }
