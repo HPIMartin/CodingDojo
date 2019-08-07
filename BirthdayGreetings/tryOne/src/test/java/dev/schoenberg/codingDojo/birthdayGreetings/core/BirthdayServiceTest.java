@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Birthday;
 import dev.schoenberg.codingDojo.birthdayGreetings.domain.Employee;
 import dev.schoenberg.codingDojo.birthdayGreetings.domain.Message;
 
@@ -70,7 +71,7 @@ public class BirthdayServiceTest {
 		public boolean hasBirthDay = false;
 
 		@Override
-		public boolean isBirthday(LocalDate birthday, LocalDate today) {
+		public boolean isBirthday(Birthday birthday, LocalDate today) {
 			return hasBirthDay;
 		}
 	}

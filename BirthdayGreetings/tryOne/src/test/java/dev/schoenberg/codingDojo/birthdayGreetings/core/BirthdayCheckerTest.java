@@ -5,12 +5,18 @@ import static java.time.Month.*;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Birthday;
+
 public class BirthdayCheckerTest {
 	private BirthdayChecker tested;
+	private Birthday birthday;
+	private LocalDate today;
+	private boolean result;
 
 	@Before
 	public void setup() {
@@ -19,51 +25,71 @@ public class BirthdayCheckerTest {
 
 	@Test
 	public void sameDay() {
-		LocalDate birthday = of(2000, JANUARY, 1);
-		LocalDate today = of(2000, JANUARY, 1);
+		arrangeBirthDay(2000, JANUARY, 1);
+		arrangeToday(2000, JANUARY, 1);
 
-		boolean result = tested.isBirthday(birthday, today);
+		act();
 
-		assertTrue(result);
+		assertBirthday();
 	}
 
 	@Test
 	public void differentYear() {
-		LocalDate birthday = of(2000, JANUARY, 1);
-		LocalDate today = of(2001, JANUARY, 1);
+		arrangeBirthDay(2000, JANUARY, 1);
+		arrangeToday(2001, JANUARY, 1);
 
-		boolean result = tested.isBirthday(birthday, today);
+		act();
 
-		assertTrue(result);
+		assertBirthday();
 	}
 
 	@Test
 	public void differentDay() {
-		LocalDate birthday = of(2000, JANUARY, 1);
-		LocalDate today = of(2000, JANUARY, 2);
+		arrangeBirthDay(2000, JANUARY, 1);
+		arrangeToday(2000, JANUARY, 2);
 
-		boolean result = tested.isBirthday(birthday, today);
+		act();
 
-		assertFalse(result);
+		assertNotBirthday();
 	}
 
 	@Test
 	public void differentMonth() {
-		LocalDate birthday = of(2000, JANUARY, 1);
-		LocalDate today = of(2000, FEBRUARY, 1);
+		arrangeBirthDay(2000, JANUARY, 1);
+		arrangeToday(2000, FEBRUARY, 1);
 
-		boolean result = tested.isBirthday(birthday, today);
+		act();
 
-		assertFalse(result);
+		assertNotBirthday();
 	}
 
 	@Test
 	public void bornOnLeapYearDay() {
-		LocalDate birthday = of(2004, FEBRUARY, 28);
-		LocalDate today = of(2005, FEBRUARY, 27);
+		arrangeBirthDay(2004, FEBRUARY, 28);
+		arrangeToday(2005, FEBRUARY, 27);
 
-		boolean result = tested.isBirthday(birthday, today);
+		act();
 
+		assertBirthday();
+	}
+
+	private void arrangeBirthDay(int year, Month month, int day) {
+		birthday = new Birthday(of(year, month, day));
+	}
+
+	private void arrangeToday(int year, Month month, int day) {
+		today = of(year, month, day);
+	}
+
+	private void act() {
+		result = tested.isBirthday(birthday, today);
+	}
+
+	private void assertBirthday() {
 		assertTrue(result);
+	}
+
+	private void assertNotBirthday() {
+		assertFalse(result);
 	}
 }

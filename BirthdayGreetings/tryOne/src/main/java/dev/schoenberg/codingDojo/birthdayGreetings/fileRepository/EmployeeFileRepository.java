@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import dev.schoenberg.codingDojo.birthdayGreetings.core.EmployeeRepository;
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Birthday;
 import dev.schoenberg.codingDojo.birthdayGreetings.domain.Employee;
 
 public class EmployeeFileRepository implements EmployeeRepository {
@@ -29,6 +30,6 @@ public class EmployeeFileRepository implements EmployeeRepository {
 
 	private Employee parseEmployee(String str) {
 		String[] data = str.split(SPLITT_PATTERN);
-		return new Employee(data[1], data[0], parse(data[2], FORMATTER), data[3]);
+		return new Employee(data[1], data[0], new Birthday(parse(data[2], FORMATTER)), data[3]);
 	}
 }

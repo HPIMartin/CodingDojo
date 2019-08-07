@@ -4,22 +4,24 @@ import static java.time.Month.*;
 
 import java.time.LocalDate;
 
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Birthday;
+
 public class BirthdayChecker {
-	public boolean isBirthday(LocalDate birthday, LocalDate today) {
-		return isSameMonth(birthday, today) && isSameDayOfMonth(birthday, today)
-				|| isLeapBirthday(birthday) && isLeapBirthdayFallback(today);
+	public boolean isBirthday(Birthday date, LocalDate today) {
+		return isSameMonth(date, today) && isSameDayOfMonth(date, today)
+				|| isLeapBirthday(date) && isLeapBirthdayFallback(today);
 	}
 
-	private boolean isSameMonth(LocalDate birthday, LocalDate today) {
-		return today.getMonth() == birthday.getMonth();
+	private boolean isSameMonth(Birthday birthday, LocalDate today) {
+		return today.getMonth() == birthday.date.getMonth();
 	}
 
-	private boolean isSameDayOfMonth(LocalDate birthday, LocalDate today) {
-		return today.getDayOfMonth() == birthday.getDayOfMonth();
+	private boolean isSameDayOfMonth(Birthday birthday, LocalDate today) {
+		return today.getDayOfMonth() == birthday.date.getDayOfMonth();
 	}
 
-	private boolean isLeapBirthday(LocalDate birthday) {
-		return birthday.getMonth() == FEBRUARY && birthday.getDayOfMonth() == 28;
+	private boolean isLeapBirthday(Birthday birthday) {
+		return birthday.date.getMonth() == FEBRUARY && birthday.date.getDayOfMonth() == 28;
 	}
 
 	private boolean isLeapBirthdayFallback(LocalDate today) {

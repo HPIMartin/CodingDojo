@@ -41,7 +41,7 @@ public class EmployeeFileRepositoryTest {
 		Employee e = result.get(0);
 		assertEquals("First", e.firstName);
 		assertEquals("Last", e.lastName);
-		assertEquals(of(2000, JANUARY, 1), e.birthDate);
+		assertEquals(of(2000, JANUARY, 1), e.birthDate.date);
 		assertEquals("first@last.com", e.email);
 	}
 }
