@@ -2,14 +2,11 @@ package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
 import java.util.List;
 
-import dev.schoenberg.codingDojo.birthdayGreetings.email.EmailSender;
-import dev.schoenberg.codingDojo.birthdayGreetings.fileRepository.EmployeeFileRepository;
-
 public class BirthdayService {
-	private final EmailSender sender;
-	private EmployeeFileRepository repo;
+	private final Sender sender;
+	private EmployeeRepository repo;
 
-	public BirthdayService(EmailSender sender, EmployeeFileRepository repo) {
+	public BirthdayService(Sender sender, EmployeeRepository repo) {
 		this.sender = sender;
 		this.repo = repo;
 	}

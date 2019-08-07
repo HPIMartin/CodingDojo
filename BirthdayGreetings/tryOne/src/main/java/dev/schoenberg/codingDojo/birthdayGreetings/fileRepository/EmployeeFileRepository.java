@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.schoenberg.codingDojo.birthdayGreetings.core.Employee;
+import dev.schoenberg.codingDojo.birthdayGreetings.core.EmployeeRepository;
 
-public class EmployeeFileRepository {
+public class EmployeeFileRepository implements EmployeeRepository {
 	private final String fileName;
 
 	public EmployeeFileRepository(String fileName) {
 		this.fileName = fileName;
 	}
 
+	@Override
 	public List<Employee> getEmployees() {
 		List<Employee> employees = new ArrayList<>();
 		try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {

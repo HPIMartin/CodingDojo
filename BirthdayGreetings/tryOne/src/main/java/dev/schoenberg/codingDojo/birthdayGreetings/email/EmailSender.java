@@ -7,7 +7,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailSender {
+import dev.schoenberg.codingDojo.birthdayGreetings.core.Sender;
+
+public class EmailSender implements Sender {
 	private final String smtpHost;
 	private final int smtpPort;
 	private final String sender;
@@ -18,6 +20,7 @@ public class EmailSender {
 		this.sender = sender;
 	}
 
+	@Override
 	public void sendMessage(String subject, String body, String recipient) {
 		// Create a mail session
 		java.util.Properties props = new java.util.Properties();
