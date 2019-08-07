@@ -13,7 +13,7 @@ public class Employee {
 		this.email = email;
 	}
 
-	public boolean isBirthday(XDate today) {
-		return today.isSameDay(birthDate);
+	public boolean hasBirthday(XDate today) {
+		return today.isBirthday(birthDate);
 	}
 }

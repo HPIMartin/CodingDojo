@@ -4,18 +4,54 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import dev.schoenberg.codingDojo.birthdayGreetings.core.XDate;
-
 public class XDateTest {
 	@Test
-	public void isSameDate() {
-		XDate date = new XDate("2000/01/01");
-		XDate notSameYear = new XDate("2001/01/01");
-		XDate notSameDay = new XDate("2000/01/02");
-		XDate notSameMonth = new XDate("2000/02/01");
+	public void sameDay() {
+		XDate birthday = new XDate("2000/01/01");
+		XDate today = new XDate("2000/01/01");
 
-		assertTrue(date.isSameDay(notSameYear));
-		assertFalse(date.isSameDay(notSameDay));
-		assertFalse(date.isSameDay(notSameMonth));
+		boolean result = today.isBirthday(birthday);
+
+		assertTrue(result);
+	}
+
+	@Test
+	public void differentYear() {
+		XDate birthday = new XDate("2000/01/01");
+		XDate today = new XDate("2001/01/01");
+
+		boolean result = today.isBirthday(birthday);
+
+		assertTrue(result);
+	}
+
+	@Test
+	public void differentDay() {
+		XDate birthday = new XDate("2000/01/01");
+		XDate today = new XDate("2000/01/02");
+
+		boolean result = today.isBirthday(birthday);
+
+		assertFalse(result);
+	}
+
+	@Test
+	public void differentMonth() {
+		XDate birthday = new XDate("2000/01/01");
+		XDate today = new XDate("2000/02/01");
+
+		boolean result = today.isBirthday(birthday);
+
+		assertFalse(result);
+	}
+
+	@Test
+	public void bornOnLeapYearDay() {
+		XDate birthday = new XDate("2004/02/28");
+		XDate today = new XDate("2005/02/27");
+
+		boolean result = today.isBirthday(birthday);
+
+		assertTrue(result);
 	}
 }

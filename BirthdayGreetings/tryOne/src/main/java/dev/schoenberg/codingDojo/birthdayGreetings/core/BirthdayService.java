@@ -12,7 +12,7 @@ public class BirthdayService<E extends Message> {
 	}
 
 	public void sendGreetings(XDate today) {
-		repo.getEmployees().stream().filter(e -> e.isBirthday(today)).map(messageFactory::getMessage)
+		repo.getEmployees().stream().filter(e -> e.hasBirthday(today)).map(messageFactory::getMessage)
 				.forEach(sender::sendMessage);
 	}
 }
