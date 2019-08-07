@@ -6,34 +6,14 @@ import org.junit.Test;
 
 public class XDateTest {
 	@Test
-	public void getters() {
-		XDate date = new XDate("1789/01/24");
-		assertEquals(1, date.getMonth());
-		assertEquals(24, date.getDay());
-	}
-
-	@Test
 	public void isSameDate() {
-		XDate date = new XDate("1789/01/24");
-		XDate sameDay = new XDate("2001/01/24");
-		XDate notSameDay = new XDate("1789/01/25");
-		XDate notSameMonth = new XDate("1789/02/25");
+		XDate date = new XDate("2000/01/01");
+		XDate notSameYear = new XDate("2001/01/01");
+		XDate notSameDay = new XDate("2000/01/02");
+		XDate notSameMonth = new XDate("2000/02/01");
 
-		assertTrue("same", date.isSameDay(sameDay));
-		assertFalse("not same day", date.isSameDay(notSameDay));
-		assertFalse("not same month", date.isSameDay(notSameMonth));
-	}
-
-	@Test
-	public void equality() {
-		XDate base = new XDate("2000/01/02");
-		XDate same = new XDate("2000/01/02");
-		XDate different = new XDate("2000/01/04");
-
-		assertFalse(base.equals(null));
-		assertFalse(base.equals(""));
-		assertTrue(base.equals(base));
-		assertTrue(base.equals(same));
-		assertFalse(base.equals(different));
+		assertTrue(date.isSameDay(notSameYear));
+		assertFalse(date.isSameDay(notSameDay));
+		assertFalse(date.isSameDay(notSameMonth));
 	}
 }

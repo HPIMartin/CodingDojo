@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class XDate {
-	private Date date;
+	private final Date date;
 
 	public XDate() {
 		date = new Date();
@@ -20,29 +20,16 @@ public class XDate {
 		}
 	}
 
-	public int getDay() {
-		return getPartOfDate(GregorianCalendar.DAY_OF_MONTH);
-	}
-
-	public int getMonth() {
-		return 1 + getPartOfDate(GregorianCalendar.MONTH);
-	}
-
 	public boolean isSameDay(XDate anotherDate) {
 		return anotherDate.getDay() == this.getDay() && anotherDate.getMonth() == this.getMonth();
 	}
 
-	@Override
-	public int hashCode() {
-		return date.hashCode();
+	private int getDay() {
+		return getPartOfDate(GregorianCalendar.DAY_OF_MONTH);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof XDate))
-			return false;
-		XDate other = (XDate) obj;
-		return other.date.equals(this.date);
+	private int getMonth() {
+		return 1 + getPartOfDate(GregorianCalendar.MONTH);
 	}
 
 	private int getPartOfDate(int part) {
