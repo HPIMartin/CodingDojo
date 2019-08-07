@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import dev.schoenberg.codingDojo.birthdayGreetings.core.Employee;
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Employee;
 
 public class BirthdayEmailGeneratorTest {
 	@Test

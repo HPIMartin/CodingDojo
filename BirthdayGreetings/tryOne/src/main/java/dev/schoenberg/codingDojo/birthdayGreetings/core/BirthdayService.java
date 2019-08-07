@@ -2,6 +2,8 @@ package dev.schoenberg.codingDojo.birthdayGreetings.core;
 
 import java.time.LocalDate;
 
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Message;
+
 public class BirthdayService<E extends Message> {
 	private final Sender<E> sender;
 	private EmployeeRepository repo;

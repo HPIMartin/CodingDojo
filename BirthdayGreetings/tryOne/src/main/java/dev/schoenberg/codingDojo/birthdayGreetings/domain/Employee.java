@@ -1,4 +1,4 @@
-package dev.schoenberg.codingDojo.birthdayGreetings.core;
+package dev.schoenberg.codingDojo.birthdayGreetings.domain;
 
 import java.time.LocalDate;
 

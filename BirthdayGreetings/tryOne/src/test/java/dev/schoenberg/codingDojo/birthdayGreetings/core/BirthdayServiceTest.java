@@ -9,6 +9,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Employee;
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Message;
+
 public class BirthdayServiceTest {
 	private FakeRepo repo;
 	private FakeSender sender;

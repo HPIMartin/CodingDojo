@@ -1,7 +1,7 @@
 package dev.schoenberg.codingDojo.birthdayGreetings.email;
 
-import dev.schoenberg.codingDojo.birthdayGreetings.core.Employee;
 import dev.schoenberg.codingDojo.birthdayGreetings.core.MessageFactory;
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Employee;
 
 public class BirthdayEmailGenerator implements MessageFactory<Email> {
 	@Override

@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.schoenberg.codingDojo.birthdayGreetings.core.Employee;
 import dev.schoenberg.codingDojo.birthdayGreetings.core.EmployeeRepository;
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Employee;
 
 public class EmployeeFileRepository implements EmployeeRepository {
 	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");

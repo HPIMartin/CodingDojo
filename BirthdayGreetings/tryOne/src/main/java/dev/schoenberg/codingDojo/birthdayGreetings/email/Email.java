@@ -1,6 +1,6 @@
 package dev.schoenberg.codingDojo.birthdayGreetings.email;
 
-import dev.schoenberg.codingDojo.birthdayGreetings.core.Message;
+import dev.schoenberg.codingDojo.birthdayGreetings.domain.Message;
 
 public class Email extends Message {
 	public final String subject;
