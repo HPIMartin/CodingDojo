@@ -42,20 +42,11 @@ public class AcceptanceTest {
 	}
 
 	@Test
-	public void willSendGreetings_whenItsSomebodysBirthday() {
+	public void smokeTest() {
 		Main.TODAY = new XDate("2008/10/08");
 
 		Main.main(new String[0]);
 
 		assertEquals(1, mailServer.getReceivedEmailSize());
-	}
-
-	@Test
-	public void willNotSendEmailsWhenNobodysBirthday() {
-		Main.TODAY = new XDate("2008/01/01");
-
-		Main.main(new String[0]);
-
-		assertEquals(0, mailServer.getReceivedEmailSize());
 	}
 }
