@@ -3,24 +3,21 @@ package dev.schoenberg.codingDojo.gildedRose.item;
 import dev.schoenberg.codingDojo.gildedRose.Item;
 import dev.schoenberg.codingDojo.gildedRose.ParsedItem;
 
-public class RawItem implements ParsedItem {
+public class BackstagePass implements ParsedItem {
 	private final Item item;
 
-	public RawItem(Item item) {
+	public BackstagePass(Item item) {
 		this.item = item;
 	}
 
 	@Override
 	public void updateQuality() {
-		if (item.name.equals("Aged Brie")) {
-			increaseQuality();
-		} else {
-			if (item.quality > 0) {
-				reduceQuality();
-			}
-		}
+		increaseQuality();
 
 		reduceSellIn();
+
+		increaseQualityIf10daysLeft();
+		increaseQualityIf5daysLeft();
 
 		if (item.sellIn < 0) {
 			sellDatePassed();
@@ -28,12 +25,18 @@ public class RawItem implements ParsedItem {
 	}
 
 	private void sellDatePassed() {
-		if (item.name.equals("Aged Brie")) {
+		item.quality = 0;
+	}
+
+	private void increaseQualityIf5daysLeft() {
+		if (item.sellIn < 5) {
 			increaseQuality();
-		} else {
-			if (item.quality > 0) {
-				reduceQuality();
-			}
+		}
+	}
+
+	private void increaseQualityIf10daysLeft() {
+		if (item.sellIn < 10) {
+			increaseQuality();
 		}
 	}
 
@@ -45,9 +48,5 @@ public class RawItem implements ParsedItem {
 		if (item.quality < QUALITY_CAP) {
 			item.quality = item.quality + 1;
 		}
-	}
-
-	private void reduceQuality() {
-		item.quality = item.quality - 1;
 	}
 }

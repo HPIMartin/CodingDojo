@@ -7,6 +7,7 @@ import java.util.List;
 
 import dev.schoenberg.codingDojo.gildedRose.item.LegendaryItem;
 import dev.schoenberg.codingDojo.gildedRose.item.RawItem;
+import dev.schoenberg.codingDojo.gildedRose.item.BackstagePass;
 
 public class GildedRose {
 	private final Item[] items;
@@ -24,7 +25,15 @@ public class GildedRose {
 		if (isLegendaryItem(raw)) {
 			return new LegendaryItem(raw);
 		}
+		if (isBackstagePass(raw)) {
+			return new BackstagePass(raw);
+		}
+
 		return new RawItem(raw);
+	}
+
+	private boolean isBackstagePass(Item raw) {
+		return "Backstage passes to a TAFKAL80ETC concert".equals(raw.name);
 	}
 
 	private boolean isLegendaryItem(Item raw) {
