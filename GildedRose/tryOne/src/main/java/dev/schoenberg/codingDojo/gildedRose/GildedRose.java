@@ -34,7 +34,7 @@ public class GildedRose {
 							reduceQuality(i);
 						}
 					} else {
-						items[i].quality = items[i].quality - items[i].quality;
+						items[i].quality = 0;
 					}
 				} else {
 					increaseQuality(i);
