@@ -3,16 +3,16 @@ package dev.schoenberg.codingDojo.gildedRose.item;
 import dev.schoenberg.codingDojo.gildedRose.Item;
 import dev.schoenberg.codingDojo.gildedRose.ParsedItem;
 
-public class RawItem implements ParsedItem {
+public class Cheese implements ParsedItem {
 	private final Item item;
 
-	public RawItem(Item item) {
+	public Cheese(Item item) {
 		this.item = item;
 	}
 
 	@Override
 	public void updateQuality() {
-		reduceQuality();
+		increaseQuality();
 
 		reduceSellIn();
 
@@ -22,16 +22,16 @@ public class RawItem implements ParsedItem {
 	}
 
 	private void sellDatePassed() {
-		reduceQuality();
+		increaseQuality();
 	}
 
 	private void reduceSellIn() {
 		item.sellIn = item.sellIn - 1;
 	}
 
-	private void reduceQuality() {
-		if (item.quality > 0) {
-			item.quality = item.quality - 1;
+	private void increaseQuality() {
+		if (item.quality < QUALITY_CAP) {
+			item.quality = item.quality + 1;
 		}
 	}
 }

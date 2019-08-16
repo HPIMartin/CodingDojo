@@ -5,9 +5,10 @@ import static java.util.stream.Collectors.*;
 
 import java.util.List;
 
+import dev.schoenberg.codingDojo.gildedRose.item.BackstagePass;
+import dev.schoenberg.codingDojo.gildedRose.item.Cheese;
 import dev.schoenberg.codingDojo.gildedRose.item.LegendaryItem;
 import dev.schoenberg.codingDojo.gildedRose.item.RawItem;
-import dev.schoenberg.codingDojo.gildedRose.item.BackstagePass;
 
 public class GildedRose {
 	private final Item[] items;
@@ -28,8 +29,15 @@ public class GildedRose {
 		if (isBackstagePass(raw)) {
 			return new BackstagePass(raw);
 		}
+		if (isCheese(raw)) {
+			return new Cheese(raw);
+		}
 
 		return new RawItem(raw);
+	}
+
+	private boolean isCheese(Item raw) {
+		return "Aged Brie".equals(raw.name);
 	}
 
 	private boolean isBackstagePass(Item raw) {
