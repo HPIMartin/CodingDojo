@@ -32,15 +32,19 @@ public class RawItem implements ParsedItem {
 		reduceSellIn();
 
 		if (item.sellIn < 0) {
-			if (item.name.equals("Aged Brie")) {
-				increaseQuality();
+			sellDatePassed();
+		}
+	}
+
+	private void sellDatePassed() {
+		if (item.name.equals("Aged Brie")) {
+			increaseQuality();
+		} else {
+			if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+				item.quality = 0;
 			} else {
-				if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-					item.quality = 0;
-				} else {
-					if (item.quality > 0) {
-						reduceQuality();
-					}
+				if (item.quality > 0) {
+					reduceQuality();
 				}
 			}
 		}
