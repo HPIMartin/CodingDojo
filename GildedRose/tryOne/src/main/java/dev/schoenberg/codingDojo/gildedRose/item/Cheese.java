@@ -10,7 +10,7 @@ public class Cheese extends ParsedItem {
 
 	@Override
 	protected void sellDatePassed() {
-		updateQuality();
+		increaseQuality();
 	}
 
 	@Override
