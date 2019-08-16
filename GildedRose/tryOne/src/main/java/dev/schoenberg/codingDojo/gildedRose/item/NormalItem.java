@@ -3,10 +3,10 @@ package dev.schoenberg.codingDojo.gildedRose.item;
 import dev.schoenberg.codingDojo.gildedRose.Item;
 import dev.schoenberg.codingDojo.gildedRose.ParsedItem;
 
-public class RawItem implements ParsedItem {
+public class NormalItem implements ParsedItem {
 	private final Item item;
 
-	public RawItem(Item item) {
+	public NormalItem(Item item) {
 		this.item = item;
 	}
 

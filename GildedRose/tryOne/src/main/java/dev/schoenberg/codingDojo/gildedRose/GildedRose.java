@@ -8,7 +8,7 @@ import java.util.List;
 import dev.schoenberg.codingDojo.gildedRose.item.BackstagePass;
 import dev.schoenberg.codingDojo.gildedRose.item.Cheese;
 import dev.schoenberg.codingDojo.gildedRose.item.LegendaryItem;
-import dev.schoenberg.codingDojo.gildedRose.item.RawItem;
+import dev.schoenberg.codingDojo.gildedRose.item.NormalItem;
 
 public class GildedRose {
 	private final Item[] items;
@@ -33,7 +33,7 @@ public class GildedRose {
 			return new Cheese(raw);
 		}
 
-		return new RawItem(raw);
+		return new NormalItem(raw);
 	}
 
 	private boolean isCheese(Item raw) {
