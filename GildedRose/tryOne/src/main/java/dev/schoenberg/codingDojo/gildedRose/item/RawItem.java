@@ -1,6 +1,9 @@
-package dev.schoenberg.codingDojo.gildedRose;
+package dev.schoenberg.codingDojo.gildedRose.item;
 
-public class RawItem {
+import dev.schoenberg.codingDojo.gildedRose.Item;
+import dev.schoenberg.codingDojo.gildedRose.ParsedItem;
+
+public class RawItem implements ParsedItem {
 	private static final int QUALITY_CAP = 50;
 
 	private Item item;
@@ -9,6 +12,7 @@ public class RawItem {
 		this.item = item;
 	}
 
+	@Override
 	public void updateQuality() {
 		if (item.name.equals("Aged Brie") || item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
 			if (item.quality < QUALITY_CAP) {
@@ -55,9 +59,7 @@ public class RawItem {
 	}
 
 	private void reduceSellIn() {
-		if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-			item.sellIn = item.sellIn - 1;
-		}
+		item.sellIn = item.sellIn - 1;
 	}
 
 	private void increaseQuality() {
@@ -67,8 +69,6 @@ public class RawItem {
 	}
 
 	private void reduceQuality() {
-		if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-			item.quality = item.quality - 1;
-		}
+		item.quality = item.quality - 1;
 	}
 }
