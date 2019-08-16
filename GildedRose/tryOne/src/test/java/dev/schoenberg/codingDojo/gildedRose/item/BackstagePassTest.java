@@ -12,7 +12,7 @@ public class BackstagePassTest {
 		Item item = new Item("", 1, 0);
 		BackstagePass tested = new BackstagePass(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(0, item.sellIn);
 	}
@@ -22,7 +22,7 @@ public class BackstagePassTest {
 		Item item = new Item("", 20, 0);
 		BackstagePass tested = new BackstagePass(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(1, item.quality);
 	}
@@ -32,7 +32,7 @@ public class BackstagePassTest {
 		Item item = new Item("", 20, 50);
 		BackstagePass tested = new BackstagePass(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(50, item.quality);
 	}
@@ -42,7 +42,7 @@ public class BackstagePassTest {
 		Item item = new Item("", 10, 0);
 		BackstagePass tested = new BackstagePass(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(2, item.quality);
 	}
@@ -52,7 +52,7 @@ public class BackstagePassTest {
 		Item item = new Item("", 5, 0);
 		BackstagePass tested = new BackstagePass(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(3, item.quality);
 	}
@@ -62,7 +62,7 @@ public class BackstagePassTest {
 		Item item = new Item("", 0, 1);
 		BackstagePass tested = new BackstagePass(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(0, item.quality);
 	}

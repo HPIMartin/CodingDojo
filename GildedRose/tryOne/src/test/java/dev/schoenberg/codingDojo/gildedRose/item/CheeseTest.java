@@ -12,7 +12,7 @@ public class CheeseTest {
 		Item item = new Item("", 1, 0);
 		Cheese tested = new Cheese(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(0, item.sellIn);
 	}
@@ -22,7 +22,7 @@ public class CheeseTest {
 		Item item = new Item("", 20, 0);
 		Cheese tested = new Cheese(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(1, item.quality);
 	}
@@ -32,7 +32,7 @@ public class CheeseTest {
 		Item item = new Item("", 20, 50);
 		Cheese tested = new Cheese(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(50, item.quality);
 	}
@@ -42,7 +42,7 @@ public class CheeseTest {
 		Item item = new Item("", 0, 0);
 		Cheese tested = new Cheese(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(2, item.quality);
 	}

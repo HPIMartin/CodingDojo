@@ -3,15 +3,23 @@ package dev.schoenberg.codingDojo.gildedRose.item;
 import dev.schoenberg.codingDojo.gildedRose.Item;
 import dev.schoenberg.codingDojo.gildedRose.ParsedItem;
 
-public class LegendaryItem implements ParsedItem {
-	private final Item item;
-
+public class LegendaryItem extends ParsedItem {
 	public LegendaryItem(Item item) {
-		this.item = item;
+		super(item);
 	}
 
 	@Override
-	public void updateQuality() {
+	protected void updateQuality() {
 		item.quality = 80;
+	}
+
+	@Override
+	protected void sellDatePassed() {
+		// NOOP
+	}
+
+	@Override
+	protected void reduceSellIn() {
+		// NOOP
 	}
 }

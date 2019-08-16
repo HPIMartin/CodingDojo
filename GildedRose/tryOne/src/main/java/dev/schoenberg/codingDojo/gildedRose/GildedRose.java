@@ -12,6 +12,6 @@ public class GildedRose {
 	}
 
 	public void updateQuality() {
-		stream(items).map(parser::parse).forEach(ParsedItem::updateQuality);
+		stream(items).map(parser::parse).forEach(ParsedItem::update);
 	}
 }

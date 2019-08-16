@@ -12,7 +12,7 @@ public class NormalItemTest {
 		Item item = new Item("", 1, 0);
 		NormalItem tested = new NormalItem(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(0, item.sellIn);
 	}
@@ -22,7 +22,7 @@ public class NormalItemTest {
 		Item item = new Item("", 20, 20);
 		NormalItem tested = new NormalItem(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(19, item.quality);
 	}
@@ -32,7 +32,7 @@ public class NormalItemTest {
 		Item item = new Item("", 20, 0);
 		NormalItem tested = new NormalItem(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(0, item.quality);
 	}
@@ -42,7 +42,7 @@ public class NormalItemTest {
 		Item item = new Item("", 0, 2);
 		NormalItem tested = new NormalItem(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(0, item.quality);
 	}

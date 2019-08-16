@@ -12,7 +12,7 @@ public class LegendaryItemTest {
 		Item item = new Item("", 0, 0);
 		LegendaryItem tested = new LegendaryItem(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(80, item.quality);
 	}
@@ -22,7 +22,7 @@ public class LegendaryItemTest {
 		Item item = new Item("", 42, 0);
 		LegendaryItem tested = new LegendaryItem(item);
 
-		tested.updateQuality();
+		tested.update();
 
 		assertEquals(42, item.sellIn);
 	}
