@@ -38,7 +38,7 @@ public class AcceptanceTest {
 				// this conjured item does not work properly yet
 				new Item("Conjured Mana Cake", 3, 6) };
 
-		GildedRose app = new GildedRose(items);
+		GildedRose app = new GildedRose(items, new ItemParser());
 
 		for (int i = 0; i <= 10; i++) {
 			printOut.accept("---------------------------------------- day " + i + " ----------------------------------------");
