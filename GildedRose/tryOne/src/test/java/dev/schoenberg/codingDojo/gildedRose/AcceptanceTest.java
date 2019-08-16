@@ -1,39 +1,51 @@
 package dev.schoenberg.codingDojo.gildedRose;
 
+import static java.lang.String.*;
+
+import java.util.function.Consumer;
+
 import org.junit.Test;
 
 public class AcceptanceTest {
+	private static final int INT_SPACE = 10;
+	private static final int STRING_SPACE = 50;
+	private static final String DELIMITTER = " # ";
+
 	@Test
-	public void acceptanceTest() {
-		Item[] items = new Item[] { new Item("+5 Dexterity Vest", 10, 20), //
-				new Item("Aged Brie", 2, 0), //
-				new Item("Elixir of the Mongoose", 5, 7), //
-				new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-				new Item("Sulfuras, Hand of Ragnaros", -1, 80), new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-				new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49), new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+	public void generateOutput() {
+		calculateTenDays(System.out::println);
+	}
+
+	@Test
+	public void compareWithRecordedResult() {
+
+	}
+
+	private void calculateTenDays(Consumer<String> printOut) {
+		Item[] items = new Item[] { new Item("+5 Dexterity Vest", 10, 20), new Item("Aged Brie", 2, 0), new Item("Elixir of the Mongoose", 5, 7),
+				new Item("Sulfuras, Hand of Ragnaros", 0, 80), new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+				new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20), new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+				new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
 				// this conjured item does not work properly yet
 				new Item("Conjured Mana Cake", 3, 6) };
 
 		GildedRose app = new GildedRose(items);
 
-		int days = 10;
-
-		for (int i = 0; i < days; i++) {
-			System.out.println("---------------------------------------- day " + i + " ----------------------------------------");
-			System.out.println(tailWithSpace("name", 50) + " # " + tailWithSpace("sellIn", 10) + " # " + tailWithSpace("quality", 10));
+		for (int i = 0; i <= 10; i++) {
+			printOut.accept("---------------------------------------- day " + i + " ----------------------------------------");
+			printOut.accept(tail("name", STRING_SPACE) + DELIMITTER + tail("sellIn", INT_SPACE) + DELIMITTER + tail("quality", INT_SPACE));
 			for (Item item : items) {
-				System.out.println(formatItem(item));
+				printOut.accept(formatItem(item));
 			}
-			System.out.println();
 			app.updateQuality();
 		}
 	}
 
 	private static String formatItem(Item item) {
-		return tailWithSpace(item.name, 50) + " # " + tailWithSpace(item.sellIn, 10) + " # " + tailWithSpace(item.quality, 10);
+		return tail(item.name, STRING_SPACE) + DELIMITTER + tail(item.sellIn, INT_SPACE) + DELIMITTER + tail(item.quality, INT_SPACE);
 	}
 
-	private static String tailWithSpace(Object toPad, int expectedLength) {
-		return String.format("%-" + expectedLength + "s", toPad);
+	private static String tail(Object toPad, int expectedLength) {
+		return format("%-" + expectedLength + "s", toPad);
 	}
 }
