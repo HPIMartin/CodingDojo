@@ -1,7 +1,10 @@
 package dev.schoenberg.codingDojo.gildedRose;
 
-public class TexttestFixture {
-	public static void main(String[] args) {
+import org.junit.Test;
+
+public class AcceptanceTest {
+	@Test
+	public void acceptanceTest() {
 		System.out.println("OMGHAI!");
 
 		Item[] items = new Item[] { new Item("+5 Dexterity Vest", 10, 20), //
@@ -16,9 +19,6 @@ public class TexttestFixture {
 		GildedRose app = new GildedRose(items);
 
 		int days = 2;
-		if (args.length > 0) {
-			days = Integer.parseInt(args[0]) + 1;
-		}
 
 		for (int i = 0; i < days; i++) {
 			System.out.println("-------- day " + i + " --------");
