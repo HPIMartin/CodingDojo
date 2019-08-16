@@ -6,7 +6,7 @@ import dev.schoenberg.codingDojo.gildedRose.ParsedItem;
 public class RawItem implements ParsedItem {
 	private static final int QUALITY_CAP = 50;
 
-	private Item item;
+	private final Item item;
 
 	public RawItem(Item item) {
 		this.item = item;
