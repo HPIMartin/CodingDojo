@@ -27,7 +27,6 @@ public class AcceptanceTest {
 		calculateTenDays(s -> result.append(s).append(System.lineSeparator()));
 
 		String expected = Files.readString(Path.of("src", "test", "resources", "extractedExample.txt"));
-		System.out.println(result.toString());
 		assertEquals(expected, result.toString());
 	}
 
