@@ -8,16 +8,6 @@ import dev.schoenberg.codingDojo.gildedRose.Item;
 
 public class NormalItemTest {
 	@Test
-	public void sellInIsReduced() {
-		Item item = new Item("", 1, 0);
-		NormalItem tested = new NormalItem(item);
-
-		tested.update();
-
-		assertEquals(0, item.sellIn);
-	}
-
-	@Test
 	public void qualityIsReduced() {
 		Item item = new Item("", 20, 20);
 		NormalItem tested = new NormalItem(item);

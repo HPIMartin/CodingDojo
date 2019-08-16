@@ -8,16 +8,6 @@ import dev.schoenberg.codingDojo.gildedRose.Item;
 
 public class BackstagePassTest {
 	@Test
-	public void sellInIsReduced() {
-		Item item = new Item("", 1, 0);
-		BackstagePass tested = new BackstagePass(item);
-
-		tested.update();
-
-		assertEquals(0, item.sellIn);
-	}
-
-	@Test
 	public void qualityIsIncreased() {
 		Item item = new Item("", 20, 0);
 		BackstagePass tested = new BackstagePass(item);
@@ -25,16 +15,6 @@ public class BackstagePassTest {
 		tested.update();
 
 		assertEquals(1, item.quality);
-	}
-
-	@Test
-	public void qualityCanNotExtendCap() {
-		Item item = new Item("", 20, 50);
-		BackstagePass tested = new BackstagePass(item);
-
-		tested.update();
-
-		assertEquals(50, item.quality);
 	}
 
 	@Test
