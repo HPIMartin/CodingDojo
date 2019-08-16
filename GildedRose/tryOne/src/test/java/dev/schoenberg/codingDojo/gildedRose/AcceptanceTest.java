@@ -1,7 +1,11 @@
 package dev.schoenberg.codingDojo.gildedRose;
 
-import static java.lang.String.*;
+import static java.lang.String.format;
+import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.function.Consumer;
 
 import org.junit.Test;
@@ -17,8 +21,14 @@ public class AcceptanceTest {
 	}
 
 	@Test
-	public void compareWithRecordedResult() {
+	public void generatedOutputAsRecorded() throws IOException {
+		StringBuffer result = new StringBuffer();
 
+		calculateTenDays(s -> result.append(s).append(System.lineSeparator()));
+
+		String expected = Files.readString(Path.of("src", "test", "resources", "extractedExample.txt"));
+		System.out.println(result.toString());
+		assertEquals(expected, result.toString());
 	}
 
 	private void calculateTenDays(Consumer<String> printOut) {
