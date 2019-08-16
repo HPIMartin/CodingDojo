@@ -7,7 +7,6 @@ import org.junit.Test;
 import dev.schoenberg.codingDojo.gildedRose.Item;
 
 public class LegendaryItemTest {
-
 	@Test
 	public void hasQuality80() {
 		Item item = new Item("", 0, 0);
@@ -27,5 +26,4 @@ public class LegendaryItemTest {
 
 		assertEquals(42, item.sellIn);
 	}
-
 }
