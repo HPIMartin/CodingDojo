@@ -1,9 +1,6 @@
 package dev.schoenberg.codingDojo.gildedRose;
 
 import static java.util.Arrays.*;
-import static java.util.stream.Collectors.*;
-
-import java.util.List;
 
 import dev.schoenberg.codingDojo.gildedRose.item.BackstagePass;
 import dev.schoenberg.codingDojo.gildedRose.item.Cheese;
@@ -18,8 +15,7 @@ public class GildedRose {
 	}
 
 	public void updateQuality() {
-		List<ParsedItem> rawItems = stream(items).map(this::parse).collect(toList());
-		rawItems.forEach(ParsedItem::updateQuality);
+		stream(items).map(this::parse).forEach(ParsedItem::updateQuality);
 	}
 
 	public ParsedItem parse(Item raw) {
