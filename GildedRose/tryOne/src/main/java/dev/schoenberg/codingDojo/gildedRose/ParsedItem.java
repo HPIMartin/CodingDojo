@@ -29,7 +29,13 @@ public abstract class ParsedItem {
 
 	protected void increaseQuality() {
 		if (item.quality < QUALITY_CAP) {
-			item.quality = item.quality + 1;
+			item.quality++;
+		}
+	}
+
+	protected void decreaseQuality() {
+		if (item.quality > 0) {
+			item.quality--;
 		}
 	}
 }

@@ -10,13 +10,11 @@ public class NormalItem extends ParsedItem {
 
 	@Override
 	protected void sellDatePassed() {
-		updateQuality();
+		decreaseQuality();
 	}
 
 	@Override
 	protected void updateQuality() {
-		if (item.quality > 0) {
-			item.quality = item.quality - 1;
-		}
+		decreaseQuality();
 	}
 }
