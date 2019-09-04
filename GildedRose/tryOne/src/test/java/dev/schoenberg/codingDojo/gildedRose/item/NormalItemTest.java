@@ -18,16 +18,6 @@ public class NormalItemTest {
 	}
 
 	@Test
-	public void qualityIsNeverNegative() {
-		Item item = new Item("", 20, 0);
-		NormalItem tested = new NormalItem(item);
-
-		tested.update();
-
-		assertEquals(0, item.quality);
-	}
-
-	@Test
 	public void qualityReducedTwiceAfterSellDatePassed() {
 		Item item = new Item("", 0, 2);
 		NormalItem tested = new NormalItem(item);
